@@ -4,15 +4,38 @@ import { optionStyles } from '../../styles/optionsStyles';
 import Icon from '../global/Icon';
 import { Colors } from '../../utils/Constants';
 import CustomText from '../global/CustomText';
+import { useTCP } from '../../services/TCPProvider';
+import { navigate } from '../../utils/NavigationUtil';
+import { pickDocument, pickImage } from '../../utils/libraryHelpers';
 
 
 
 const Options: FC<{
-    isHome: boolean,
+    isHome?: boolean,
     onMediaPickup?: (media: any) => void;
     onFilePickedUp?: (file: any) => void;
 }> = ({ isHome, onMediaPickup, onFilePickedUp }) => {
-    const handleUniversalPicker = async (type: string) => { }
+    const { isConnected } = useTCP()
+    const handleUniversalPicker = async (type: string) => {
+        if (isHome) {
+            if (isConnected) {
+                navigate("ConnectionScreen")
+            } else {
+                navigate("HomeScreen")
+            }
+            return
+        }
+
+        if (type === 'images' && onMediaPickup) {
+            pickImage(onMediaPickup)
+        }
+        if (type === 'file' && onFilePickedUp) {
+            pickDocument(onFilePickedUp)
+        }
+
+    }
+
+
     return (
         <View style={optionStyles.container}>
             <TouchableOpacity style={optionStyles.subContainer} onPress={() => { handleUniversalPicker('images') }}>

@@ -11,7 +11,7 @@ interface CustomTextProps {
     fontFamily?: "Okra-Bold" | "Okra-Regular" | "Okra-Black" | "Okra-Light" | "Okra-Medium";
     fontSize?: number;
     color?: string;
-    style: TextStyle | TextStyle[];
+    style?: TextStyle | TextStyle[];
     children?: React.ReactNode;
     numberOfLines?: number;
     onLayout?: (event: any) => void;

@@ -1,12 +1,14 @@
 import { View, Text, SafeAreaView, Touchable, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { homeHeaderStyles } from '../../styles/homeHeaderStyles'
 import { commonStyles } from '../../styles/commonStyles'
 import Icon from '../global/Icon'
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg"
 import { screenHeight, screenWidth, svgPath } from '../../utils/Constants'
+import QRGeneraterModal from '../modals/QRGeneraterModal'
 
 const HomeHeader = () => {
+    const [isVisible, setVisible] = useState(false)
     return (
         <View style={homeHeaderStyles.mainContainer}><SafeAreaView />
             <View style={[commonStyles.flexRowBetween, homeHeaderStyles.container]}>
@@ -14,7 +16,7 @@ const HomeHeader = () => {
                     <Icon iconFamily='Ionicons' name='menu' size={22} color='#fff' />
                 </TouchableOpacity>
                 <Image source={require('../../assets/images/logo_t.png')} style={homeHeaderStyles.logo} />
-                <TouchableOpacity onPress={() => { }}>
+                <TouchableOpacity onPress={() => setVisible(true)}>
                     <Image source={require('../../assets/images/profile.jpeg')} style={homeHeaderStyles.profile} />
                 </TouchableOpacity>
             </View>
@@ -28,6 +30,8 @@ const HomeHeader = () => {
                 <Path fill='#80BFFF' d={svgPath} />
                 <Path fill='url(#grad)' d={svgPath} />
             </Svg>
+
+            {isVisible && <QRGeneraterModal visible={isVisible} onClose={() => setVisible(false)} />}
         </View>
     )
 }
