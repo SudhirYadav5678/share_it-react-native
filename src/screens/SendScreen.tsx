@@ -190,7 +190,7 @@ const SendScreen: FC = () => {
                             </Animated.View>
                         ))}
                     </View>
-                    <Image source={require('../assets/images/profile.jpg')} style={sendStyles.profileImage} />
+                    <Image source={require('../assets/images/profile1.jpg')} style={sendStyles.profileImage} />
                 </View>
 
                 <TouchableOpacity onPress={handlegoBack} style={sendStyles.backButton}><Icon name='arrow-back' iconFamily='Ionicons' size={16} color='#000' /></TouchableOpacity>

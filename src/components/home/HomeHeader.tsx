@@ -17,7 +17,7 @@ const HomeHeader = () => {
                 </TouchableOpacity>
                 <Image source={require('../../assets/images/logo_t.png')} style={homeHeaderStyles.logo} />
                 <TouchableOpacity onPress={() => setVisible(true)}>
-                    <Image source={require('../../assets/images/profile.jpeg')} style={homeHeaderStyles.profile} />
+                    <Image source={require('../../assets/images/profile1.jpg')} style={homeHeaderStyles.profile} />
                 </TouchableOpacity>
             </View>
 
